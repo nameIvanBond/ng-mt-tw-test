@@ -1,0 +1,190 @@
+// https://github.com/tailwindlabs/tailwindcss/discussions/19061
+@use 'sass:map';
+@use 'sass:color';
+
+/* Color palettes */
+$palettes: (
+  primary: (
+    50: #fef2f3,
+    100: #ffe1e4,
+    200: #ffc8ce,
+    300: #ffa2ad,
+    400: #fc6d7e,
+    500: #f4364c,
+    600: #e22036,
+    700: #be172a,
+    800: #9d1727,
+    900: #821a26,
+    950: #47080f
+  ),
+  secondary: (
+    50: #f4f7fb,
+    100: #e9eef5,
+    200: #cedce9,
+    300: #a2bed7,
+    400: #709bc0,
+    500: #4e7fa9,
+    600: #3c668d,
+    700: #315273,
+    800: #2c4660,
+    900: #293c51,
+    950: #141d28
+  ),
+  tertiary: (
+    50: #effefc,
+    100: #c8fff5,
+    200: #91feee,
+    300: #36f4de,
+    400: #1fe2d1,
+    500: #06c6b9,
+    600: #029f97,
+    700: #067f7a,
+    800: #0b6463,
+    900: #0e5351,
+    950: #003333
+  ),
+  neutral: (
+    50: #f8f9fa,
+    100: #f2f3f5,
+    200: #e8eaec,
+    300: #d5d9dd,
+    400: #bcc3c9,
+    500: #a1a8b1,
+    600: #939aa5,
+    700: #777e8a,
+    800: #636974,
+    900: #525760,
+    950: #363a3f
+  ),
+  info: (
+    50: #f0faff,
+    100: #e0f3fe,
+    200: #b9e9fe,
+    300: #7cd9fd,
+    400: #36c6fa,
+    500: #0cb0eb,
+    600: #009cde,
+    700: #0170a3,
+    800: #065e86,
+    900: #0b4e6f,
+    950: #07324a
+  ),
+  success: (
+    50: #f4faeb,
+    100: #e6f3d4,
+    200: #cfe9ad,
+    300: #afd97d,
+    400: #8bc34a,
+    500: #73ac36,
+    600: #588828,
+    700: #446922,
+    800: #395420,
+    900: #32481f,
+    950: #18270c
+  ),
+  warning: (
+    50: #fff5ed,
+    100: #ffe9d4,
+    200: #ffcfa8,
+    300: #ffad70,
+    400: #ff7f37,
+    500: #ff6720,
+    600: #f04106,
+    700: #c72d07,
+    800: #9e250e,
+    900: #7f220f,
+    950: #450d05
+  ),
+  alert: (
+    50: #fff0f0,
+    100: #ffdddd,
+    200: #ffc0c0,
+    300: #ff9494,
+    400: #ff5757,
+    500: #ff2323,
+    600: #ff0808,
+    700: #d70000,
+    800: #b10303,
+    900: #920a0a,
+    950: #500000
+  )
+);
+
+/* Simple mapping from Tailwind CSS to M3 shades */
+@function tailwind-to-m3($tw-palette) {
+  $m3-palette: (
+    0: #000000,
+    10: map.get($tw-palette, 950),
+    20: map.get($tw-palette, 900),
+    25: color.mix(map.get($tw-palette, 900), map.get($tw-palette, 800), 50%),
+    30: map.get($tw-palette, 800),
+    35: map.get($tw-palette, 700),
+    40: map.get($tw-palette, 600),
+    50: map.get($tw-palette, 500),
+    60: map.get($tw-palette, 400),
+    70: map.get($tw-palette, 300),
+    80: map.get($tw-palette, 200),
+    90: map.get($tw-palette, 100),
+    95: color.mix(map.get($tw-palette, 100), map.get($tw-palette, 50), 50%),
+    98: map.get($tw-palette, 50),
+    99: color.mix(map.get($tw-palette, 50), white, 60%),
+    100: #ffffff
+  );
+
+  @return $m3-palette;
+}
+
+/* For neutral palette only, add the extra M3 shades */
+@function tailwind-to-m3-neutral($tw-palette) {
+  $base: tailwind-to-m3($tw-palette);
+
+  /* Add special neutral values only to the neutral palette */
+  @return map.merge(
+    $base,
+    (
+      4: color.mix(map.get($tw-palette, 950), black, 50%),
+      6: color.mix(map.get($tw-palette, 950), black, 70%),
+      12: color.mix(map.get($tw-palette, 950), map.get($tw-palette, 900), 60%),
+      17: color.mix(map.get($tw-palette, 950), map.get($tw-palette, 900), 40%),
+      22: color.mix(map.get($tw-palette, 900), map.get($tw-palette, 800), 60%),
+      24: color.mix(map.get($tw-palette, 900), map.get($tw-palette, 800), 40%),
+      87: color.mix(map.get($tw-palette, 300), map.get($tw-palette, 200), 60%),
+      92: color.mix(map.get($tw-palette, 200), map.get($tw-palette, 100), 60%),
+      94: color.mix(map.get($tw-palette, 200), map.get($tw-palette, 100), 40%),
+      96: color.mix(map.get($tw-palette, 100), map.get($tw-palette, 50), 60%)
+    )
+  );
+}
+
+/* Create M3 palettes from Tailwind CSS palettes */
+$m3-palettes: (
+  primary: tailwind-to-m3(map.get($palettes, primary)),
+  secondary: tailwind-to-m3(map.get($palettes, secondary)),
+  tertiary: tailwind-to-m3(map.get($palettes, tertiary)),
+  neutral: tailwind-to-m3-neutral(map.get($palettes, neutral)),
+  neutral-variant: tailwind-to-m3(map.get($palettes, neutral)),
+  error: tailwind-to-m3(map.get($palettes, alert))
+);
+
+/* Define the rest map using our M3 palettes (not the original Tailwind CSS ones) */
+$rest: (
+  secondary: map.get($m3-palettes, secondary),
+  neutral: map.get($m3-palettes, neutral),
+  neutral-variant: map.get($m3-palettes, neutral-variant),
+  error: map.get($m3-palettes, error)
+);
+
+/* Merge the primary M3 palette with the rest */
+$primary-palette: map.merge(map.get($m3-palettes, primary), $rest);
+
+/* Merge the tertiary M3 palette with the rest */
+$tertiary-palette: map.merge(map.get($m3-palettes, tertiary), $rest);
+
+/* Export palettes for Tailwind CSS */
+:root {
+  @each $palette, $shades in $palettes {
+    @each $shade, $color in $shades {
+      --palette-#{$palette}-#{$shade}: #{$color};
+    }
+  }
+}

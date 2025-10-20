@@ -1,1 +1,56 @@
+@charset "UTF-8";
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+
+@use 'css/palettes.scss' as theme;
+@use 'css/normalize';
+@use "css/tailwind.css";
+
+    // @import "tailwindcss/base";
+    // @import "tailwindcss/components";
+    // @import "tailwindcss/utilities";
+//@tailwind base;
+//@tailwind components;
+@tailwind utilities;
+
+
+@include mat.core();
+html {
+  @include mat.theme(
+      (
+        color: (
+          primary: theme.$primary-palette,
+          tertiary: theme.$tertiary-palette,
+        ),
+        typography: (
+          plain-family: Roboto,
+          brand-family: Open Sans,
+          bold-weight: 500,
+          medium-weight: 400,
+          regular-weight: 300,
+        ),
+        density: 4,
+
+      ), $overrides: (
+      primary-container: orange,
+    ));
+
+
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light-dark;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+
+//   background-color: var(--mat-sys-surface);
+//   color: var(--mat-sys-on-surface);
+//   font: var(--mat-sys-body-medium);
+}
+
