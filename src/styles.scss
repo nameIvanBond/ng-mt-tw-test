@@ -40,7 +40,9 @@ html {
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
+  background-color: #161616;
+
+    // Default the application to a light color theme. This can be changed to
   // `dark` to enable the dark color theme, or to `light dark` to defer to the
   // user's system settings.
   color-scheme: light-dark;
@@ -52,5 +54,23 @@ body {
 //   background-color: var(--mat-sys-surface);
 //   color: var(--mat-sys-on-surface);
 //   font: var(--mat-sys-body-medium);
+}
+
+
+h2{
+font-size: 48px;
+}
+p{
+  color:#EEEEEE;
+}
+.hG_white{
+  background: linear-gradient(to right, #FFFFFF, #999999);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hG_blue{
+  background: linear-gradient(to right, #0068DF, #7AA4F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 

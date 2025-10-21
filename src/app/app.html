@@ -1,28 +1,7 @@
-<h1 class="text-3xl font-bold underline"> Hello world!</h1>
-<router-outlet></router-outlet>
-<div class="p-5 rounded shadow font-bold bg-secondary-500">
-  <h1 class="text-2xl text-blue-600">Tailwind работает!</h1>
-  <button matButton="tonal">
-    Нажми меня
-  </button>
-</div>
-<div class="bg-primary-500">
-  <!-- Angular Material button -->
-  <button mat-raised-button color="primary" class="rounded-md shadow-md px-6 py-2">
-    Материал + Tailwind
-  </button>
-
-  <!-- Tailwind-only -->
-  <div class="bg-gray-100 p-4 rounded-lg">
-    <h2 class="text-xl font-semibold text-blue-600">Tailwind Utility</h2>
-  </div>
-</div>
-
-<div class="flex">
-  <div>
+<div style="display: none">
   <h1 class="text-3xl font-bold underline"> Hello world!</h1>
   <router-outlet></router-outlet>
-  <div class="p-5 rounded shadow font-bold bg-secondary-500">
+  <div class="p-5 rounded shadow font-bold bg-primary-500">
     <h1 class="text-2xl text-blue-600">Tailwind работает!</h1>
     <button matButton="tonal">
       Нажми меня
@@ -38,7 +17,45 @@
     <div class="bg-gray-100 p-4 rounded-lg">
       <h2 class="text-xl font-semibold text-blue-600">Tailwind Utility</h2>
     </div>
-
   </div>
+
+  <div class="flex">
+    <div>
+    <h1 class="text-3xl font-bold underline"> Hello world!</h1>
+    <router-outlet></router-outlet>
+    <div class="p-5 rounded shadow font-bold bg-secondary-500">
+      <h1 class="text-2xl text-blue-600">Tailwind работает!</h1>
+      <button matButton="tonal">
+        Нажми меня
+      </button>
+    </div>
+    <div class="bg-primary-500">
+      <!-- Angular Material button -->
+      <button mat-raised-button color="primary" class="rounded-md shadow-md px-6 py-2">
+        Материал + Tailwind
+      </button>
+
+      <!-- Tailwind-only -->
+      <div class="bg-gray-100 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-blue-600">Tailwind Utility</h2>
+      </div>
+
+    </div>
+    </div>
   </div>
 </div>
+<!-- ======================================== -->
+
+
+<div class="max-w-4xl mx-auto px-4">
+<app-text-info img="Commodities" headerWhite="Trade on " headerBlue="Commodities">
+  <p class="">Trade commodities such as crude oil and natural gas and diversify your portfolio. Capitalize on supply and demand trends in the global commodity market to generate strong returns on your investment.</p>
+</app-text-info>
+
+
+<article class="p-4 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+  <h3 class="text-lg font-semibold">Title</h3>
+</article>
+
+</div>
+
